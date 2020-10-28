@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<title>2. Setup i Draw - Tutorial Processing</title>
+
+		<meta name="description" content="Tutorial Processing">
+		<meta name="author" content="Isaac Muro">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/moon.css" id="theme">
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<script src="js/processing.min.js"></script>
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section id="Processing">
+					<canvas style="z-index:-1;position:absolute;left:0px;top:0px;" id="canvas0" data-processing-sources="sketch/noisePresentacio.pde"></canvas>
+					<a href="http://www.processing.org"><img width="100" height="100" src="http://upload.wikimedia.org/wikipedia/commons/5/59/Processing_Logo_Clipped.svg"/></a>
+					<h1>Processing</h1>
+					<h3>2. Setup i Draw</h3>
+
+					<p>
+						<small>Creat per <a href="http://goo.gl/Q2zdYG">Isaac Muro</a> </small><br />
+						<a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/88x31.png" alt="Creative Commons Licence" /></a>
+					</p>
+				</section>
+				<section>
+					<h2>setup</h2>
+						<p>
+							La funció <a href="http://processing.org/reference/setup_.html">setup</a> s'executa només una vegada quant el programa comença. Es solen iniciar els paràmetres d'inicialització en aquesta funció. Aquesta funció és opcional. Només pot haver-hi una funció setup en tot el programa.
+						</p>
+						<pre><code data-trim contenteditable class="actionscript">
+void setup(){
+  size(200, 100);
+}
+	</code></pre>
+				</section>
+				<section>
+					<h2>draw</h2>
+						<p>
+							La funció <a href="http://processing.org/reference/draw_.html">draw</a> es crida justament després de la funció size. És una funció que es crida continuament en forma de bucle.
+						</p>
+						<pre><code data-trim contenteditable class="actionscript">
+void setup(){
+size(200, 100);
+}
+
+void draw(){
+line (23,34,5,5);
+}
+					</code></pre>
+				</section>
+				<section>
+					<h2>background I</h2>
+						<p>
+							La funció <a href="http://processing.org/reference/background_.html">background</a> es sol utilitzar de dues formes. Definir-la en la funció setup. I per tant només es dibuixarà una vegada.
+						</p>
+						<pre><code data-trim contenteditable class="actionscript">
+void setup(){
+size(100, 50);
+// Definim el fons blau
+background(0,0,255);
+}
+
+void draw(){
+// Dibuixem una circumferencia negre
+fill(0);
+ellipse (mouseX, mouseY, 15, 15);
+}
+					</code></pre>
+								<canvas  id="canvas0" data-processing-sources="sketch/backgroundI.pde"></canvas>
+
+				</section>
+				<section>
+					<h2>background II</h2>
+						<p>
+							La segona forma d'utilitzar la funció <a href="http://processing.org/reference/background_.html">background</a> és a la funció draw. En aquest cas, la funció background s'executarà indefinidament.
+						</p>
+						<pre><code data-trim contenteditable class="actionscript">
+void setup(){
+size(100, 50);
+}
+
+void draw(){
+// Definim el fons
+background(#3F3F3F);
+// Dibuixem una circumferencia negre
+fill(0);
+ellipse (mouseX, mouseY, 15, 15);
+}
+					</code></pre>
+								<canvas  id="canvas1" data-processing-sources="sketch/backgroundII.pde"></canvas>
+
+				</section>
+				<section>
+					<h2>mouseX</h2>
+						<p>
+							La variable <a href="http://processing.org/reference/mouseX.html">mouseX</a> conté la coordenada X d'on es troba el mouse.
+						</p>
+						<pre><code data-trim contenteditable class="actionscript">
+void draw()
+{
+  background(#3F3F3F);
+  line(mouseX, 20, mouseX, 40);
+}
+					</code></pre>
+								<canvas  id="canvas2" data-processing-sources="sketch/mouseX.pde"></canvas>
+
+				</section>
+				<section>
+					<h2>mouseY</h2>
+						<p>
+							La variable <a href="http://processing.org/reference/mouseY.html">mouseY</a> conté la coordenada Y d'on es troba el mouse.
+						</p>
+						<pre><code data-trim contenteditable class="actionscript">
+void draw()
+{
+  background(#3F3F3F);
+  line(20, mouseY, 40, mouseY);
+}
+					</code></pre>
+								<canvas  id="canvas3" data-processing-sources="sketch/mouseY.pde"></canvas>
+
+				</section>
+				<section>
+					<h2>mousePressed</h2>
+						<p>
+							La funció <a href="http://processing.org/reference/mousePressed_.html">mousePressed</a> es crida quan s'apreta el botó del mouse.
+						</p>
+						<pre><code data-trim contenteditable class="actionscript">
+int value = 0;
+
+void draw() {
+  fill(value);
+  rect(25, 25, 50, 50);
+}
+
+void mousePressed() {
+    value = 255;
+}
+					</code></pre>
+								<canvas  id="canvas4" data-processing-sources="sketch/mousePressedF.pde"></canvas>
+				</section>
+				<section>
+					<h2>mouseReleased</h2>
+						<p>
+							La funció <a href="http://processing.org/reference/mouseReleased_.html">mouseReleased</a> es crida quan es deixa d'apretar el botó del mouse.
+						</p>
+						<pre><code data-trim contenteditable class="actionscript">
+int value = 0;
+
+void draw() {
+  fill(value);
+  rect(25, 25, 50, 50);
+}
+
+void mousePressed() {
+    value = 255;
+}
+void mouseReleased() {
+    value = 0;
+}
+					</code></pre>
+								<canvas  id="canvas5" data-processing-sources="sketch/mouseReleasedF.pde"></canvas>
+				</section>
+				<section>
+					<h2>print</h2>
+						<p>
+							La funció <a href="http://processing.org/reference/print_.html">print</a> s'utilitza per imprimir informació a l'àrea de la consola, que és el rectangle negre que es troba a sota de l'entorn de Processing.
+						</p>
+						<pre><code data-trim contenteditable class="actionscript">
+int value = 32;
+
+void setup() {
+  // Imprimim un text
+  print("Hola");
+  // Imprimim una variable
+  print(value);
+  // Imprimim un literal
+  print(43);
+}
+					</code></pre>
+								<canvas  id="canvas6" data-processing-sources="sketch/print.pde"></canvas>
+				</section>
+				<section>
+					<h2>println</h2>
+						<p>
+							La funció <a href="http://processing.org/reference/println_.html">println</a> s'utilitza per imprimir informació a l'àrea de la consola, però afegint un salt de línea al final.
+						</p>
+						<pre><code data-trim contenteditable class="actionscript">
+int value = 32;
+
+void setup() {
+  // Imprimim un text
+  println("Hola");
+  // Imprimim una variable
+  println(value);
+  // Imprimim un literal
+  println(43);
+}
+					</code></pre>
+								<canvas  id="canvas6" data-processing-sources="sketch/println.pde"></canvas>
+				</section>
+				<section data-background="#007777">
+					<h2>Imprimir la posició del mouse</h2>
+						<p>
+							Com imprimirieu la posició del mouse cada cop que canvia de posició?
+						</p>
+						<pre><code data-trim contenteditable class="actionscript">
+¿?					</code></pre>
+				</section>
+				<section>
+					<h2>Fer l'ullet</h2>
+					<canvas  id="canvas7" data-processing-sources="sketch/ullet.pde"></canvas>
+
+
+				</section>
+				<section data-background="#007777">
+					<h2>Canvis en la cara</h2>
+						<p>
+							Canvieu el codi següent per fer que l'altre ull també es mogui. Intenteu moure més elements de la cara.
+						</p>
+						<pre><code data-trim contenteditable class="actionscript">
+void setup()
+{
+size(200,200);
+smooth();
+}
+void draw()
+{
+background(255);
+fill(255,217,0);
+ellipse(100,100,175,175);
+fill(0);
+ellipse(65,65,20,mouseY/10);
+ellipse(135,65,20,20);
+noFill();
+arc(100,100, 125, 125,radians(0), radians(180));
+}
+					</code></pre>
+				</section>
+				<section data-background="#8c4738">
+					<h2>deures</h2>
+					<p>
+						Animeu la cara que vau fer la setmana passada. Podeu animar molts aspectes de la cara utilitzant els events del ratolí i variables.
+					</p>
+				</section>
+				<section>
+					<h1>THANKS</h1>
+					<ul>
+						<li><a href="http://revealjs.jit.su/">Hakim El Hattab. Reveal.js</a></li>
+						<li><a href="processing.org">processing.org</a></li>
+						<li><a href="processingjs.org">processingjs.org</a></li>
+						<li><a href="openprocessing.org">openprocessing.org</a></li>
+						<li><a href="http://go.yuri.at/p5/tutorial/">Tutorial de Processing para mentes Macromedia</a></li>
+					</ul>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+				//isaac
+				slideNumber: true,
+				mouseWheel: true,
+				transition: 'linear', // default/cube/page/concave/zoom/linear/fade/none
+				backgroundTransition: 'slide',
+				scale:1,
+				maxScale:1.0,
+				minScale:1.0,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				//transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+	</body>
+</html>

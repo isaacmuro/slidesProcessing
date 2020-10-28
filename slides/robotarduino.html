@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<title>Robot Arduino - Projecte de Desenvolupament Aplicacions</title>
+
+		<meta name="description" content="Robot Arduino">
+		<meta name="author" content="Isaac Muro">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js" type="text/javascript"></script> 
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/moon.css" id="theme">
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<script src="js/processing.min.js"></script>
+		
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+	<style type="text/css">
+	.videoframe {
+		display:block;
+		margin:0 auto !important;
+		width:640px;
+		height:480px;
+	}
+	a.videoyt {
+		font-size:18px;
+	}
+	.reveal section img {
+		margin: 0px;
+		background: transparent;
+		border: 0px;
+		box-shadow: none;
+	}
+	.left{float:left; width:33%;}
+	</style>
+	<script type="text/javascript">
+	
+		$(document).ready(function(){
+			Reveal.addEventListener( 'slidechanged', function( event ) {
+				// event.previousSlide, event.currentSlide, event.indexh, event.indexv
+				var recSlide = event.currentSlide;
+
+				// check if is youtube url is inside slide and save youtubeID, prevent reloading checking videoframe
+				if( ($(recSlide).find('.videoyt').length != 0) && ($(recSlide).find('.videoframe').html()=='') ) {
+					ytid = $(recSlide).find('.videoyt').attr('data-youtube');
+					// replace a.videoyt with video embed code
+					$(recSlide).find('.videoframe').html('<iframe width="640" height="480" src="https://www.youtube.com/embed/'+ytid+'?wmode=opaque&amp;rel=0&amp;vq=large" frameborder="0" allowfullscreen></iframe>');
+					// &iv_load_policy=<3></3>
+					// give anchor with videoid a correct link
+					$(recSlide).find('.videoyt').attr('href', 'http://www.youtube.com/watch?v='+ytid);
+					$(recSlide).find('.videoyt').attr('target', '_blank');
+				}
+			});
+		});
+		
+	</script>
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section id="RobotArduino">
+					<canvas  style="z-index:-1;position:absolute;left:0px;top:0px;"  id="canvas0" data-processing-sources="https://dl.dropboxusercontent.com/u/50554359/slides/sketch/noisePresentacio.pde"></canvas>
+					<a href="http://www.processing.org"><img width="72" height="49" src="http://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Arduino_Logo.svg/720px-Arduino_Logo.svg.png"/></a>	
+					<h1>Robot Arduino</h1>
+					<p>http://bit.ly/1OM3hvb</p>
+						
+					<p>
+						<small>Creat per <a href="http://goo.gl/Q2zdYG">Isaac Muro</a> </small><br />
+						<img width="118" height="44" src="http://es.creativecommons.org/blog/wp-content/uploads/2013/04/by-sa_petit.png" alt="Creative Commons Licence">
+					</p>
+					<aside class="notes">
+						
+					</aside>
+				</section>
+				<section id="Presentacio">
+					<h2>Presentació del robot</h2>
+					<ul>
+						<img style="-moz-border-radius: 15px;-webkit-border-radius: 15px;" src="http://arduino.cc/en/uploads/Guide/RobotIsoView.png"/>
+					</ul>
+				</section>
+				<section id="informacio">
+					<h2>Informació</h2>
+					<ul>					
+						<li><a href="http://arduino.cc/en/Main/Robot" target="_blank">Principal</a></li>
+						<li><a href="http://arduino.cc/en/Guide/Robot" target="_blank">Guia</a></li>
+						<li><a href="http://arduino.cc/en/Reference/RobotLibrary" target="_blank">Llibreria de funcions</a></li>
+					</ul>
+				</section>
+				<section id="Caracteristiques I">
+					<h2>Característiques del Control Board</h2>
+					<img style="-moz-border-radius: 15px;-webkit-border-radius: 15px;background:#007777" src="http://arduino.cc/en/uploads/Guide/RobotInputs.png"/>
+				</section>
+				<section id="Caracteristiques II">
+					<h2>Característiques del Motor Board</h2>
+					<img style="-moz-border-radius: 15px;-webkit-border-radius: 15px;background:#007777" src="http://arduino.cc/en/uploads/Guide/MotorBoardLabeled.png"/>
+				</section>
+				<section id="Software">
+					<h2>Software</h2>
+					<ul>
+						<li>Aneu a la pàgina de Arduino i descarregueu-vos el IDE d'Arduino.</li>
+					</ul>
+				</section>
+				<section id="Funcionalitats">
+					<h2>Funcionalitats</h2>
+					<ul>
+						<li>Moviment</li>
+						<li>Visualització</li>
+						<li>So</li>
+						<li>Control</li>
+						<li>Potenciometre</li>
+						<li>Orientació</li>
+						<li>Seguiment Infraroig</li>
+					</ul>
+				</section>
+				<section id="Funcionalitats2">
+					<h2>Funcionalitats 2</h2>
+					<ul>
+						<li>Comunicació Infraroig</li>
+						<li>Comunicació Bluetooth</li>
+						<li>Comunicació Movil</li>
+						<li>Detector de distància</li>
+						<li>...</li>
+					</ul>
+				</section>
+				<section id="Exemples">
+					<h2>Exemples</h2>
+					<p>Tots els exemples estàn disponibles a Internet i a l'IDE Arduino</p>
+					<ul>
+						<li>Wheel Calibration</li>
+						<li>Logo</li>
+						<li>Sensor Distancia</li>
+						<li>Line Following</li>
+						<li>Compass</li>
+						<li>Inputs</li>
+						<li>Control</li>
+						<li>Control Remot</li>
+						<li>Pantalla LCD</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Videotutorials</h2>
+					<ul>
+					<li><a href="https://www.youtube.com/watch?v=vlxH0DAv5ds" target="_blank">First tutorial</a></li>
+					<li><a href="https://www.youtube.com/watch?v=3LLLIxGvLxU" target="_blank">Second tutorial</a></li>
+					<li><a href="https://www.youtube.com/watch?v=p1iw-8pXwfI" target="_blank">Third tutorial</a></li>
+					<li><a href="https://www.youtube.com/watch?v=bnqDzNAU7JQ" target="_blank">Fourth tutorial</a></li>
+					<li><a href="https://www.youtube.com/watch?v=RuuMUHSVG5M" target="_blank">Fifth tutorial</a></li>
+					</ul>
+				</section>
+				<section id="Projecte">
+					<h2>Projecte</h2>
+					<ul>
+						<li>Definició de projecte</li>
+						<li>Necessitats de hardware</li>
+						<li>Detectar funcions de hardware</li>
+						<li>Definició de pantalles</li>
+						<li>Codi I</li>
+						<li>Codi II</li>
+						<li>Proves</li>
+					</ul>
+				</section>
+				<section id="Grups">
+					<h2>Definició de Grups</h2>
+					<p>El projecte es farà en parelles. Podeu fer els grups que volgueu, però no pot ser cap company del projecte de Mates. La definició de grups, ho farem el pròxim dia.</p>
+				</section>
+				<section id="Projecte2">
+					<h2>Definició de Projecte</h2>
+					<p>Amb les funcionalitats que hem vist abans, heu de proposar dos projectes que n'utilitzi algunes. Com veureu més endavant, és més coherent trobar un problema a la vida real que el robot pugui solucionar més facilment.</p>
+					<p>Entregareu un document que ha de tenir definits 2 projectes, dels quals escullirem un. </p>
+					<ul>
+					<li>Examples:</li>	
+					<li><a href="https://www.youtube.com/watch?v=vusquRnjA10&index=2&list=PLqnIaXrARxXFHhD5_r8dAfbx-_D3hkWBA" target="_blank">Hack the Robot</a></li>
+					</ul>
+				</section>
+				<section id="ControlBoard">
+					<h2>Arduino Robot Control Board</h2>
+					<ul>
+					<li><a href="http://fabcirablog.weebly.com/blog/the-layout-of-the-arduino-robot-board-again" target="_blank">The Layout of the Arduino Robot Board (again) </a></li>
+					<li><a href="http://fabcirablog.weebly.com/blog/grappling-with-the-arduino-robot-control-board" target="_blank">Grappling with the Arduino Robot Control Board </a></li>
+					<li><a href="http://hackthearduinorobot.blogspot.com.es/2014/03/53-how-to-blink-led-with-io-pins.html" target="_blank">How to blink a LED with I/O pins</a></li>
+					<li><a href="https://arduinorobothelp.wordpress.com/" target="_blank">How to connect Arduino WiFi Shield to Arduino Robot</a></li>
+					
+					</ul>
+				</section>
+				<section id="ArduinoRobotBluetooth">
+					<h2>Arduino Robot Bluetooth</h2>
+					<ul>
+					<li><a href="https://www.youtube.com/watch?v=jO_Fb6HJTAI" target="_blank">Crear app en android para controlar arduino(Bluetooth)</a></li>
+					<li><a href="http://www.instructables.com/id/Arduino-AND-Bluetooth-HC-05-Connecting-easily/?lang=es&ALLSTEPS" target="_blank">Arduino AND Bluetooth HC-05 Connecting easily</a></li>
+					<li><a href="http://www.instructables.com/id/How-control-arduino-board-using-an-android-phone-a/?lang=es" target="_blank">How to control arduino board using an android phone and a bluetooth module</a></li>
+					<li><a href="https://www.youtube.com/watch?v=xjtxrxVauZg" target="_blank">App Inventor 2 Tutorial - Android receive data from arduino via HC-06 Bluetooth</a></li>
+					<li><a href="http://www.electroensaimada.com/i2c.html" target="_blank">Tutorial Arduino : I2C</a></li>
+					<li><a href="https://dl.dropboxusercontent.com/u/50554359/i2carduinounobluetoothMoviment.ino" target="_blank">Codi per Arduino Uno</a></li>
+					<li><a href="https://dl.dropboxusercontent.com/u/50554359/i2cArduinoRobotbluetoothMoviment.ino" target="_blank">Codi per Arduino Robot</a></li>
+					</ul>
+				</section>
+				<section id="hcsr04">
+					<h2>App Inventor Bluetooth</h2>
+					<img src="img/appinventor.PNG" />
+				</section>
+				<section id="hcsr04">
+					<h2>App Inventor Bluetooth 2</h2>
+					<img src="img/appinventor2.PNG" />
+				</section>
+				<section id="hcsr04">
+					<h2>Robot Arduino + Sensor Distancia HC-SR04</h2>
+					<img src="img/hcsr04.jpg" />
+				</section>
+				<section id="hcsr04_2">
+					<h2>Links HC-SR04</h2>
+					<ul>
+					<li><a href="http://elcajondeardu.blogspot.com.es/2014/03/tutorial-sensor-ultrasonidos-hc-sr04.html" target="_blank">Tutorial: sensor ultrasonidos hc-sr04</a></li>
+					<li><a href="http://www.educachip.com/hc-sr04-arduino-tutorial/" target="_blank">HC-SR04 Arduino – Tutorial Con Código Incluido</a></li>
+					<li><a href="http://www.instructables.com/id/Simple-Arduino-and-HC-SR04-Example/?lang=es" target="_blank">Simple Arduino and HC-SR04 Example</a></li>
+					</ul>
+				</section>
+				<section data-background-image="img/end.jpg">
+                    <!-- The End -->
+				</section>
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+				//isaac
+				slideNumber: true,
+				mouseWheel: true,
+				transition: 'linear', // default/cube/page/concave/zoom/linear/fade/none
+				backgroundTransition: 'slide',
+				scale:1,
+				maxScale:1.0,
+				minScale:1.0,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				//transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+	</body>
+</html>

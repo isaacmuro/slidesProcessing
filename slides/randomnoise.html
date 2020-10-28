@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<title>3. Random/Noise - Tutorial Processing</title>
+
+		<meta name="description" content="Tutorial Processing">
+		<meta name="author" content="Isaac Muro">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/moon.css" id="theme">
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<script src="js/processing.min.js"></script>
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section id="Processing">
+					<canvas style="z-index:-1;position:absolute;left:0px;top:0px;" id="canvas0" data-processing-sources="sketch/prova.pde"></canvas>
+					<a href="http://www.processing.org"><img width="100" height="100" src="http://upload.wikimedia.org/wikipedia/commons/5/59/Processing_Logo_Clipped.svg"/></a>
+					<h1>Processing</h1>
+					<h3>3. Random i noise</h3>
+
+					<p>
+						<small>Creat per <a href="http://goo.gl/Q2zdYG">Isaac Muro</a> </small><br />
+						<a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/88x31.png" alt="Creative Commons Licence" /></a>
+					</p>
+				</section>
+				<section>
+					<h2>random I</h2>
+						<p>
+							La funció <a href="http://processing.org/reference/random_.html">random</a> genera un nombre aleatori entre 0 i el nombre que se li passa com a paràmetre.
+						</p>
+						<pre><code data-trim contenteditable class="actionscript">
+void draw(){
+  background(#3F3F3F);
+  // Genera un nombre entre 0 i 50
+  int value = random(50);
+  line (10, 10, value, 50);
+}
+	</code></pre>
+				<canvas  id="canvas0" data-processing-sources="sketch/randomI.pde"></canvas>
+				</section>
+				<section>
+					<h2>random II</h2>
+						<p>
+							La funció <a href="http://processing.org/reference/random_.html">random</a> també pot tenir dos paràmetres. El nombre generat estarà entre aquests dos valors.
+						</p>
+						<pre><code data-trim contenteditable class="actionscript">
+void draw(){
+  background(#3F3F3F);
+  // Genera un nombre entre 50 i 100
+  int value = random(50, 100);
+  line (10, 10, value, 50);
+}
+					</code></pre>
+					<canvas  id="canvas1" data-processing-sources="sketch/randomII.pde"></canvas>
+				</section>
+				<section>
+					<h2>random III</h2>
+						<p>
+							La funció <a href="http://processing.org/reference/random_.html">random</a> es pot utilitzar per canviar els colors, per exemple.
+						</p>
+						<pre><code data-trim contenteditable class="actionscript">
+void draw(){
+	int value = random(15,30);
+// Dibuixem una circumferencia amb colors random
+fill(random(255),random(255),random(255));
+ellipse (mouseX, mouseY, value, value);
+}
+					</code></pre>
+					<canvas  id="canvas2" data-processing-sources="sketch/randomIII.pde"></canvas>
+				</section>
+				<section>
+					<h2>noise</h2>
+						<p>
+							La funció <a href="http://processing.org/reference/noise_.html">noise</a> és la funció que genera una seqüència de nombres aleatoris, però de forma més natural i harmònica.
+						</p>
+						<canvas  id="canvas3" data-processing-sources="sketch/noise.pde"></canvas>
+				</section>
+				<section>
+					<h2>random vs noise</h2>
+					<table style="margin: 0 auto;">
+					  <tr>
+						  <td>Noise</td>
+						  <td>Random</td>
+					  </tr>
+  					  <tr>
+						  <td><canvas  id="canvas4" data-processing-sources="sketch/noiserandomI.pde"></canvas></td>
+						  <td><canvas  id="canvas5" data-processing-sources="sketch/noiserandomII.pde"></canvas></td>
+					  </tr>
+					</table>
+				</section>
+				<section>
+					<h2>pmouseX, pmouseY</h2>
+					<p>Les variables <a href="https://www.processing.org/reference/pmouseX.html">pmouseX</a> i <a href="https://www.processing.org/reference/pmouseY.html">pmouseY</a> s'utilitzen per saber el valor de les variables mouseX, mouseY anterior.</p>
+					<pre><code data-trim contenteditable class="actionscript">
+void draw(){
+line (mouseX, mouseY, pmouseX, pmouseY);
+}
+					</code></pre>
+					<table style="margin: 0 auto;">
+  					  <tr>
+						  <td>
+							<canvas  id="canvas6" data-processing-sources="sketch/pmouse.pde"></canvas></td>
+						  <td>
+							<canvas  id="canvas7" data-processing-sources="sketch/ellipsepmouse.pde"></canvas></td>
+
+						</tr>
+					</table>
+				</section>
+				<section>
+					<h2>keyPressed</h2>
+						<p>
+							La funció <a href="http://processing.org/reference/keyPressed_.html">keyPressed</a> es crida quan s'apreta una tecla.
+						</p>
+						<pre style="width:50%;float:left"><code data-trim contenteditable class="actionscript">
+int value = 0;
+void draw(){
+  background(100);
+  fill (value);
+  rect(30, 20, 55, 55);
+}
+void keyPressed() {
+  if (key == 'a' || key == 'A') {
+    value = 255;
+  } else {
+    value = 0;
+  }
+}
+					</code></pre>
+					<div><canvas  id="canvas5" data-processing-sources="sketch/keypressed.pde"></canvas>
+					</div>
+				</section>
+				<section data-background="#8c4738">
+					<h2>deures</h2>
+					<p>
+						Creeu una taula de dibuix, on es pugui ser creatius. (Posar exemples).
+					</p>
+				</section>
+				<section>
+					<h1>THANKS</h1>
+					<ul>
+						<li><a href="http://revealjs.jit.su/">Hakim El Hattab. Reveal.js</a></li>
+						<li><a href="processing.org">processing.org</a></li>
+						<li><a href="processingjs.org">processingjs.org</a></li>
+						<li><a href="openprocessing.org">openprocessing.org</a></li>
+						<li><a href="http://go.yuri.at/p5/tutorial/">Tutorial de Processing para mentes Macromedia</a></li>
+					</ul>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+				//isaac
+				slideNumber: true,
+				mouseWheel: true,
+				transition: 'linear', // default/cube/page/concave/zoom/linear/fade/none
+				backgroundTransition: 'slide',
+				scale:1,
+				maxScale:1.0,
+				minScale:1.0,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				//transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+	</body>
+</html>

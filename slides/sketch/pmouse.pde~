@@ -1,0 +1,8 @@
+void setup() 
+{ 
+size(200,200); 
+smooth(); 
+} 
+void draw(){
+line (mouseX, mouseY, pmouseX, pmouseY);
+}
